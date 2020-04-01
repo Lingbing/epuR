@@ -1,3 +1,17 @@
+#' Get EPU indices
+#'
+#' Takes in the region name
+#' @param region a character indicating the region of the EPU you want. The defaul
+#' is "all" regions. The region names has to be one of the options in the EPU country list
+#' @return return an xts data object containing the EPU for the chosen region
+#' @seealso xts
+#' @export
+#' @examples
+#' data <- get_epu()
+#' plot(data)
+#' china_epu <- get_epu("China")
+#' library(dygraphs)
+#' dygraph(china_epu)
 get_epu <- function(region = "all") {
   library(tidyverse)
   library(openxlsx)
@@ -23,6 +37,8 @@ get_epu <- function(region = "all") {
   }
   return(region_data)
 }
+
+
 get_TPU <- function(region = "China") {
   if (region == "China") {
     url = "https://www.policyuncertainty.com/media/China_Mainland_Paper_EPU.xlsx"
@@ -51,7 +67,7 @@ get_TPU <- function(region = "China") {
 }
 
 get_TPU2 <- function(freq = "monthly") {
-  # the original data set contains other informations such as exchange rate uncertainty
+  # the original data set contains other information such as exchange rate uncertainty
   # and tarrifvol, etc. We only pick the TPU column
   if (freq == "monthly") {
     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 3, detectDates = TRUE)
@@ -74,6 +90,32 @@ get_TPU2 <- function(freq = "monthly") {
   }
   return(data_xts)
 }
+
+get_GPR <- function() {
+  url = "https://www.matteoiacoviello.com/gpr_files/gpr_web_latest.xlsx"
+  data <- read.xlsx(url, sheet = 3)
+  data_date <- as.yearmon(data$Month, format = "%Y-%m")
+  data <- data %>%
+    select(-c(Year, Month))
+  data_xts <- xts(data, order.by = data_date)
+}
+
+get_FSI <- function(freq = "monthly") {
+  url = "https://www.policyuncertainty.com/media/Financial_Stress.xlsx"
+  if (freq == "monthly") {
+    data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 2, detectDates = TRUE)
+    data_date <- as.yearmon(paste(data$year, data$month, sep = "-"), format = "%Y-%m")
+    data <- data %>%
+      select(-c(year, month, date))
+  } else if (freq == "quarterly") {
+    data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 1, detectDates = TRUE)
+    data_date <- as.yearqtr(data$date)
+    data <- data %>%
+      select(-c(year, quarter, date))
+  }
+    data_xts <- xts(data, order.by = data_date)
+}
+
 
 
 
