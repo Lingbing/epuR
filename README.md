@@ -1,4 +1,4 @@
-# epuR
+# epuR: Economic Policy Uncertainty Data Analysis Made Easy
 
 This package provides tools to retrieve Economic Policy Uncertainty (EPU) data from the EPU official website (https://www.policyuncertainty.com/index.html). The website is hosting a collection of EPU related indices, including EPU indices in dozens of countries, categorical EPU, and some other indices like Trade Policy Index, Financial Stress Indicator, Geopolitical Risk index, etc. Hand collecting from the website can be cumbersome, and putting them into the right format for further analysis can be frustrating. 
 
