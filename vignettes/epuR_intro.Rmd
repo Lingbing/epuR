@@ -1,0 +1,106 @@
+---
+title: "Economic Policy Uncertainty data made easy in R "
+author: "Lingbing Feng"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Economic Policy Uncertainty data made easy in R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Economic Policy Uncertainty data
+`get_epu()` function collects the EPU data and outputs an xts object. The required argument is *region* which is a character indicating the region of EPU data you need. By default, it collects all regions.
+
+The data collection is in real time and normally it take about several seconds to download the data but it is really dependent on your network speed.
+```{r}
+library(epuR)
+all_data <- get_epu()
+plot(all_data)
+```
+
+As it is a `xts` object, so `dygraph` can be directly applied for interactive plots.
+```{r}
+library(dygraphs)
+dygraph(all_data)
+```
+If you need EPU for a specific region, use `region = ` argument:
+```{r}
+china_epu <- get_epu(region = "China")
+dygraph(china_epu)
+```
+
+Another way to get country level data is to directly manipulate the all_data object
+```{r}
+china_data <- all_data$China
+dygraph(china_data)
+```
+The difference is that using `region` will take care of the NA values so there is no large white area in the plot. However, it is not a problem in xts, just delete the NAs. 
+```{r}
+dygraph(na.omit(china_data))
+```
+
+
+# Trade Policy Uncertainty (TPU) data
+The US TPU data is one of the category-specific EPU indices developed in the original paper by Baker et al. (2016). "It reflects the frequency of articles in American newspapers that discuss policy-related economic uncertainty and also contain one or more references to trade policy. " To get the US TPU data:
+```{r}
+us_tpu <- get_tpu(region = "US")
+dygraph(us_tpu)
+```
+China TPU index is constructed by Steven J. Davis, Dingqian Liu and Xuguang S. Sheng using the Renmin Daily and the Guangming Daily. See https://www.policyuncertainty.com/china_monthly.html
+
+To get the China TPU:
+```{r}
+china_tpu <- get_tpu("China")
+dygraph(china_tpu)
+```
+Japan TPU is also available, which is a part of the category-specific EPU indexes developed by Elif Arbatli, Steven J. Davis, Arata Ito and Naoko Miake, which reflects the frequency of articles in Japanese newspapers that discuss policy-related economic uncertainty and also contain one or more references to trade policy. Details can be found in https://www.policyuncertainty.com/japan_monthly.html. To get Japan TPU:
+```{r}
+jap_tpu <- get_tpu("Japan")
+dygraph(jap_tpu)
+```
+The japan TPU data also contains EPU, FPU (Fiscal Policy Uncertainty Index
+), MPUI(Monetary Policy Uncertainty Index
+), and ERPU(Exchange Rate Policy Uncertainty Index
+). Feel free to use them. If you only need TPU, simply:
+```{r}
+dygraph(jap_tpu$TPU)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
