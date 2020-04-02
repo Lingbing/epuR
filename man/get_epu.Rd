@@ -2,12 +2,12 @@
 % Please edit documentation in R/funs.R
 \name{get_epu}
 \alias{get_epu}
-\title{Get EPU indices}
+\title{Get (Economic Policy Uncertainty) EPU indices}
 \usage{
 get_epu(region = "all")
 }
 \arguments{
-\item{region}{a character indicating the region of the EPU you want. The defaul
+\item{region}{a character indicating the region of the EPU you want. The default
 is "all" regions. The region names has to be one of the options in the EPU country list}
 }
 \value{
@@ -15,6 +15,22 @@ return an xts data object containing the EPU for the chosen region
 }
 \description{
 Takes in the region name
+}
+\examples{
+# get all country data by default
+data <- get_epu()
+# it is a xts object so it can be plotted directly
+plot(data)
+# use dygraphs for interactive ts plot
+library(dygraphs)
+dygraph(data)
+# get country-wise data using specific region name
+china_epu <- get_epu("China")
+library(dygraphs)
+dygraph(china_epu)
+}
+\references{
+\url{https://www.policyuncertainty.com/}
 }
 \seealso{
 xts
