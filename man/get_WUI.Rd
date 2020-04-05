@@ -36,8 +36,10 @@ The dataset includes the World Uncertainty Index (WUI) at the global level,
 as well as by income, region, and country levels.
 }
 \examples{
+\dontrun{
 wui_ave <- get_WUI("F1")
-dygraph(wui_ave)
+plot(wui_ave)
+}
 }
 \references{
 \url{https://worlduncertaintyindex.com/data/}

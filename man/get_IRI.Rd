@@ -20,6 +20,10 @@ Get Immigration Related Index (IRI) data
 the intensity of migration-related fears in France, Germany,
 the United Kingdom and the United States.
 }
+\examples{
+usa_iri <- get_IRI("USA")
+dygraph(usa_iri)
+}
 \references{
 \url{https://www.policyuncertainty.com/immigration_fear.html}
 }

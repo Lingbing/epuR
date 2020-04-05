@@ -6,13 +6,14 @@ This package provides tools to retrieve Economic Policy Uncertainty (EPU) data f
 
 The following indices are supported:
 
-1. Economic Policy Uncertainty (EPU) using `get_epu()`.
-2. Trade Policy Uncertainty (TPU) using `get_tpu()`.
-3. US Equity Market Volatility (EMV) using `get_emv()`.
-4. World Uncertainty Index (WUI)
-5. Financial Stress Indicator (FSI)
-6. Geopolitical Risk Index (GRI)
-7.Migration Fear Index (MFI) and EPU data for France, Germany, the UK, and the US.
+1. Economic Policy Uncertainty (EPU) using `get_EPU()`.
+2. Trade Policy Uncertainty (TPU) using `get_TPU()`.
+3. US Equity Market Volatility (EMV) using `get_EMV()`.
+4. World Uncertainty Index (WUI) using `get_WUI()`.
+5. Financial Stress Indicator (FSI) using `get_FSI()`.
+6. GeoPolitical Risk Index (GPR) using `get_GPR()`.
+7. Immigration Related Index (IRI) using `get_IRI()`.
+
 
 Monetary Policy Uncertainty (MPU) from https://sites.google.com/site/lucasfhusted/data
 

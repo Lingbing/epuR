@@ -1,18 +1,10 @@
-## ----setup, include = FALSE---------------------------------------------------
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-library(dygraphs)
-library(xts)
-
 ## -----------------------------------------------------------------------------
 library(epuR)
+library(dygraphs)
 all_data <- get_EPU()
-plot(all_data)
+dygraph(all_data)
 
 ## -----------------------------------------------------------------------------
-library(dygraphs)
 dygraph(all_data)
 
 ## -----------------------------------------------------------------------------

@@ -27,17 +27,17 @@ full data xts object. It is suggested to get the full data by default and then
 collects regional data using xts.
 }
 \examples{
-# get all country data by default
+\dontrun{
 data <- get_EPU()
-# it is a xts object so it can be plotted directly
+# it is an xts object so it can be plotted directly
 plot(data)
 # use dygraphs for interactive ts plot
 library(dygraphs)
 dygraph(data)
 # get country-wise data using specific region name
 china_epu <- get_EPU("China")
-library(dygraphs)
 dygraph(china_epu)
+}
 }
 \references{
 \url{https://www.policyuncertainty.com/}

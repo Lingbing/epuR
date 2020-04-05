@@ -23,7 +23,7 @@
 #' @examples
 #' # get all country data by default
 #' data <- get_EPU()
-#' # it is a xts object so it can be plotted directly
+#' # it is an xts object so it can be plotted directly
 #' plot(data)
 #' # use dygraphs for interactive ts plot
 #' library(dygraphs)
@@ -32,7 +32,7 @@
 #' china_epu <- get_EPU("China")
 #' library(dygraphs)
 #' dygraph(china_epu)
-get_EPU <- function(region = "all") {
+get_EPU <- function (region = "all") {
   url <- "https://www.policyuncertainty.com/media/All_Country_Data.xlsx"
   data <- read.xlsx(url, rows = 1:423)
   data_date <- as.yearmon(paste(data$Year, data$Month, sep = "-"), format = "%Y-%m")
@@ -54,7 +54,6 @@ get_EPU <- function(region = "all") {
 
 #' Get Trade Policy Uncertainty (TPU) data
 #'
-#' Takes in the region name
 #' @param region a character indicating the region of the TPU you want. The default
 #' is "China" regions. Can also be "Japan" and "US".
 #' @return return an xts data object containing the TPU for the chosen region
@@ -68,7 +67,7 @@ get_EPU <- function(region = "all") {
 #' jap_tpu <- get_TPU("Japan")
 #' library(dygraphs)
 #' dygraph(jap_tpu)
-get_TPU <- function(region = "China") {
+get_TPU <- function (region = "China") {
   if (region == "China") {
     url = "https://www.policyuncertainty.com/media/China_Mainland_Paper_EPU.xlsx"
     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 4, cols = 1:3)
@@ -103,7 +102,7 @@ get_TPU <- function(region = "China") {
 #' @examples
 #' emv_data <- get_EMV(all = FALSE)
 #' dygraph(emv_data)
-get_EMV <- function(all = T) {
+get_EMV <- function (all = T) {
   url = "https://www.policyuncertainty.com/media/EMV_Data.xlsx"
   data <- read.xlsx(url, rows = 1:423)
   data_date <- as.yearmon(paste(data$Year, data$Month, sep = "-"), format = "%Y-%m")
@@ -118,30 +117,7 @@ get_EMV <- function(all = T) {
 
 
 
-# get_TPU2 <- function(freq = "monthly") {
-#   # the original data set contains other information such as exchange rate uncertainty
-#   # and tarrifvol, etc. We only pick the TPU column
-#   if (freq == "monthly") {
-#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 3, detectDates = TRUE)
-#     data_date <- as.yearmon(data$DATE, format = "%Y-%m")
-#     data <- data %>%
-#       select(TPU)
-#     data_xts <- xts(data, order.by = data_date)
-#   } else if (freq == "daily") {
-#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 4)
-#     data_date <- ymd(data$DAY)
-#     data <- data %>%
-#       select(TPUD)
-#     data_xts <- xts(data, order.by = data_date)
-#   } else if (freq == "quaterly") {
-#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 5)
-#     data_date <- as.yearqtr(data$DATEQ)
-#     data <- data %>%
-#       select(TPUQ)
-#     data_xts <- xts(data, order.by = data_date)
-#   }
-#   return(data_xts)
-# }
+
 
 
 #' Get Financial Stress Indicator (FSI) data
@@ -258,8 +234,6 @@ get_WUI <- function(type = "F1") {
   return(data_xts)
 }
 
-
-
 #' Get Immigration Related Index (IRI) data
 #'
 #' @details the intensity of migration-related fears in France, Germany,
@@ -271,7 +245,7 @@ get_WUI <- function(type = "F1") {
 #' @export
 #' @references \url{https://www.policyuncertainty.com/immigration_fear.html}
 #' @examples
-#' usa_iri <- get_IRI("USA)
+#' usa_iri <- get_IRI("USA")
 #' dygraph(usa_iri)
 get_IRI <- function(region="all") {
   url = "https://www.policyuncertainty.com/media/Migration_Fear_EPU_Data.xlsx"
@@ -292,10 +266,6 @@ get_IRI <- function(region="all") {
   }
   return(final_data)
 }
-
-
-
-
 
 #' Get Geopolitical Risk Index (GPR) data
 #'
@@ -345,19 +315,30 @@ get_GPR <- function(type = 1) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# get_TPU2 <- function(freq = "monthly") {
+#   # the original data set contains other information such as exchange rate uncertainty
+#   # and tarrifvol, etc. We only pick the TPU column
+#   if (freq == "monthly") {
+#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 3, detectDates = TRUE)
+#     data_date <- as.yearmon(data$DATE, format = "%Y-%m")
+#     data <- data %>%
+#       select(TPU)
+#     data_xts <- xts(data, order.by = data_date)
+#   } else if (freq == "daily") {
+#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 4)
+#     data_date <- ymd(data$DAY)
+#     data <- data %>%
+#       select(TPUD)
+#     data_xts <- xts(data, order.by = data_date)
+#   } else if (freq == "quaterly") {
+#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 5)
+#     data_date <- as.yearqtr(data$DATEQ)
+#     data <- data %>%
+#       select(TPUQ)
+#     data_xts <- xts(data, order.by = data_date)
+#   }
+#   return(data_xts)
+# }
 
 
 

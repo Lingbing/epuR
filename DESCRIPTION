@@ -4,13 +4,14 @@ Title: Retrieve the Economic Uncertainty Index Data
 Version: 0.1.0
 Author: Lingbing Feng
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
-Description: This package provides tools to retrieve the EPU data from the official 
- website. 
-License: MIT
+Description: Tools to retrieve the Economic Policy Uncertainty and related index data from the official 
+ website in real time.
+License: GPL
 URL: https://github.com/Lingbing/epuR
 BugReports: https://github.com/Lingbing/epuR/issues
 Encoding: UTF-8
 LazyData: true
+Imports: openxlsx, xts, zoo, stats
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr
-Suggests: knitr, rmarkdown
+Suggests: knitr, rmarkdown, dygraphs

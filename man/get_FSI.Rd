@@ -21,11 +21,13 @@ Index is constructed from the titles of articles published in five U.S.
 newspapers: the Boston Globe, Chicago Tribune, Los Angeles Times, Wall Street Journal and Washington Post.
 }
 \examples{
+\dontrun{
 # for monthly FSI
 fsi_mon <- get_FSI()
-dygraph(fsi_mon)
+plot(fsi_mon)
 fsi_quar <- get_FSI("quarterly")
-dygraph(fsi_quar)
+plot(fsi_quar)
+}
 }
 \references{
 \url{https://www.policyuncertainty.com/financial_stress.html}

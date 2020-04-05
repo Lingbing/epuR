@@ -24,8 +24,10 @@ of Geopolitical Risk (GPR Index) counting the occurrence of words related to
  during the 2014 Russia-Ukraine crisis, and after the Paris terrorist attacks.
 }
 \examples{
+\dontrun{
 gpr <- get_GPR(1)
 plot(gpr$GPR)
+}
 }
 \references{
 \url{https://www.matteoiacoviello.com/gpr.htm}
