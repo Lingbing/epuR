@@ -8,7 +8,7 @@ The following indices are supported:
 
 1. Economic Policy Uncertainty (EPU) using `get_epu()`.
 2. Trade Policy Uncertainty (TPU) using `get_tpu()`.
-3. US Equity Market Volatility (EMV)
+3. US Equity Market Volatility (EMV) using `get_emv()`.
 4. World Uncertainty Index (WUI)
 5. Financial Stress Indicator (FSI)
 6. Geopolitical Risk Index (GRI)

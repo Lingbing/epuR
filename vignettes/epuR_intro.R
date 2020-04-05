@@ -3,10 +3,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dygraphs)
+library(xts)
 
 ## -----------------------------------------------------------------------------
 library(epuR)
-all_data <- get_epu()
+all_data <- get_EPU()
 plot(all_data)
 
 ## -----------------------------------------------------------------------------
@@ -14,7 +16,7 @@ library(dygraphs)
 dygraph(all_data)
 
 ## -----------------------------------------------------------------------------
-china_epu <- get_epu(region = "China")
+china_epu <- get_EPU(region = "China")
 dygraph(china_epu)
 
 ## -----------------------------------------------------------------------------
@@ -25,17 +27,43 @@ dygraph(china_data)
 dygraph(na.omit(china_data))
 
 ## -----------------------------------------------------------------------------
-us_tpu <- get_tpu(region = "US")
+us_tpu <- get_TPU(region = "US")
 dygraph(us_tpu)
 
 ## -----------------------------------------------------------------------------
-china_tpu <- get_tpu("China")
+china_tpu <- get_TPU("China")
 dygraph(china_tpu)
 
 ## -----------------------------------------------------------------------------
-jap_tpu <- get_tpu("Japan")
+jap_tpu <- get_TPU("Japan")
 dygraph(jap_tpu)
 
 ## -----------------------------------------------------------------------------
 dygraph(jap_tpu$TPU)
+
+## -----------------------------------------------------------------------------
+emv_data <- get_EMV(all = F)
+dygraph(emv_data)
+
+## -----------------------------------------------------------------------------
+wui_overall <- get_WUI("F1")
+dygraph(wui_overall)
+
+## -----------------------------------------------------------------------------
+wtui_data <- get_WUI("T8")
+dygraph(wtui_data$CHN)
+
+## -----------------------------------------------------------------------------
+fsi_mon <- get_FSI()
+dygraph(fsi_mon)
+fsi_quar <- get_FSI(freq = "quarterly")
+dygraph(fsi_quar)
+
+## -----------------------------------------------------------------------------
+usa_iri <- get_IRI("USA")
+dygraph(usa_iri)
+
+## -----------------------------------------------------------------------------
+gpr <- get_GPR(type = 1)
+dygraph(gpr$GPR)
 

@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dygraphs)
+library(xts)
 ```
 
 # Economic Policy Uncertainty data
@@ -22,7 +24,7 @@ knitr::opts_chunk$set(
 The data collection is in real time and normally it take about several seconds to download the data but it is really dependent on your network speed.
 ```{r}
 library(epuR)
-all_data <- get_epu()
+all_data <- get_EPU()
 plot(all_data)
 ```
 
@@ -33,7 +35,7 @@ dygraph(all_data)
 ```
 If you need EPU for a specific region, use `region = ` argument:
 ```{r}
-china_epu <- get_epu(region = "China")
+china_epu <- get_EPU(region = "China")
 dygraph(china_epu)
 ```
 
@@ -51,19 +53,19 @@ dygraph(na.omit(china_data))
 # Trade Policy Uncertainty (TPU) data
 The US TPU data is one of the category-specific EPU indices developed in the original paper by Baker et al. (2016). "It reflects the frequency of articles in American newspapers that discuss policy-related economic uncertainty and also contain one or more references to trade policy. " To get the US TPU data:
 ```{r}
-us_tpu <- get_tpu(region = "US")
+us_tpu <- get_TPU(region = "US")
 dygraph(us_tpu)
 ```
 China TPU index is constructed by Steven J. Davis, Dingqian Liu and Xuguang S. Sheng using the Renmin Daily and the Guangming Daily. See https://www.policyuncertainty.com/china_monthly.html
 
 To get the China TPU:
 ```{r}
-china_tpu <- get_tpu("China")
+china_tpu <- get_TPU("China")
 dygraph(china_tpu)
 ```
 Japan TPU is also available, which is a part of the category-specific EPU indexes developed by Elif Arbatli, Steven J. Davis, Arata Ito and Naoko Miake, which reflects the frequency of articles in Japanese newspapers that discuss policy-related economic uncertainty and also contain one or more references to trade policy. Details can be found in https://www.policyuncertainty.com/japan_monthly.html. To get Japan TPU:
 ```{r}
-jap_tpu <- get_tpu("Japan")
+jap_tpu <- get_TPU("Japan")
 dygraph(jap_tpu)
 ```
 The japan TPU data also contains EPU, FPU (Fiscal Policy Uncertainty Index
@@ -76,14 +78,88 @@ dygraph(jap_tpu$TPU)
 
 
 
+# US Equity Market Volatility Index
+Details about the EMV data can be reached here at: https://www.policyuncertainty.com/EMV_monthly.html
+
+The default `get_emv` collects all categories constituting the index and the output can be quite messy. If only the overall EMV is in need, set `all = FALSE`.
+Also, it is suggested to keep the default all = TRUE and manipulate the xts output as needed.
+```{r}
+emv_data <- get_EMV(all = F)
+dygraph(emv_data)
+```
 
 
+# World Unvcertainty Index (WUI) data
+Deetails can be found at https://www.policyuncertainty.com/wui_quarterly.html, and https://worlduncertaintyindex.com/data/.
+
+World Uncertainty Index (WUI) is developed by Hites Ahir (International Monetary Fund), Nicholas Bloom (Stanford University) and Davide Furceri (International Monetary Fund).
+
+The official WUI data set excel file contains several sheets, name of which becomes the argument option of the `get_wui()` function. They are 
+
+- F1: overall uncertainty across the globe.
+- F2: trade uncertainty across the globe.
+- T1: World Uncertainty Index (WUI) at the global level (simple average and GDP weighted average), income level (advanced, emerging, and low-income economies), and regional level (Africa, Asia and the Pacific, Europe, Middle East and Central Asia, and Western Hemisphere).
+- T2: World Uncertainty Index (WUI) for 143 countries
+- T3:  total count of the word "uncertainty" (or its variant) in the EIU
+ country reports for 143 countries and from the 1950s
+- T4: count of the total number of words in the EIU reports for 143 countries
+ and from the 1950s
+- T5: count of the total number of pages in the EIU countries reports for
+ 143 countries from the 1950s
+- T6：three-quarter weighted moving average of the World Uncertainty Index (WUI) for 143 countries from the 1950s
+- T8: aggregate World Trade Uncertainty (WTU) index as well as the index by country.
+
+Therefore, to get the overall WUI:
+```{r}
+wui_overall <- get_WUI("F1")
+dygraph(wui_overall)
+```
+
+To get the World Trade Uncertainty Index, use "T8". The output xts data objects contains data for 143 countries, so it might be better to plot only the data you need.
+```{r}
+wtui_data <- get_WUI("T8")
+dygraph(wtui_data$CHN)
+```
 
 
+# Financial Stree Indicator (FSI) data
+Details abou this index can be found: https://www.policyuncertainty.com/financial_stress.html
+
+Data is available at monthly and quarterly frequencies. `get_fsi()` outputs
+monthly data by default. 
+```{r}
+fsi_mon <- get_FSI()
+dygraph(fsi_mon)
+fsi_quar <- get_FSI(freq = "quarterly")
+dygraph(fsi_quar)
+```
+
+# Immigration Related Index (IRI) data 
+```{r}
+usa_iri <- get_IRI("USA")
+dygraph(usa_iri)
+```
+
+# Geopolitical Risk Index (GPR) data
+Details can be found at: 
+https://www.matteoiacoviello.com/gpr.htm
+
+There are 4 types:
+1. type= 1 for quarterly GRI, 
+2. type = 2 for GPRH, 
+3. type = 3 for GPR of countries,
+4. type = 4 for GPR words
+
+```{r}
+gpr <- get_GPR(type = 1)
+dygraph(gpr$GPR)
+```
 
 
+# Conclusion
 
-
+Data from the EPU website have different sources, with different data formats and frequencies.
+`epuR` takes cares of the nuisances by providing a consistent way of collecting different index data.
 
 
 
