@@ -21,8 +21,10 @@ the intensity of migration-related fears in France, Germany,
 the United Kingdom and the United States.
 }
 \examples{
+\dontrun{
 usa_iri <- get_IRI("USA")
-dygraph(usa_iri)
+plot(usa_iri)
+}
 }
 \references{
 \url{https://www.policyuncertainty.com/immigration_fear.html}
