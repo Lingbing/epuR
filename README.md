@@ -9,6 +9,9 @@
 
 [![Travis build
 status](https://travis-ci.org/Lingbing/epuR.svg?branch=master)](https://travis-ci.org/Lingbing/epuR)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/epuR?color=green)](https://cran.r-project.org/package=epuR)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/epuR?color=green)](https://cran.r-project.org/package=epuR)
+[![](http://cranlogs.r-pkg.org/badges/epuR?color=green)](https://cran.r-project.org/package=epuR)
 <!-- badges: end -->
 
 The goal of `epuR` is to provide a simple and consistent framework to
