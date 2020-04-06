@@ -7,11 +7,10 @@
 get_TPU(region = "China")
 }
 \arguments{
-\item{region}{a character indicating the region of the TPU you want. The default
-is "China" regions. Can also be "Japan" and "US".}
+\item{region}{a character indicating the region of the TPU, default is "China", can be "Japan" or "US".}
 }
 \value{
-return an xts data object containing the TPU for the chosen region
+an xts data object containing the TPU for the chosen region
 }
 \description{
 Get Trade Policy Uncertainty (TPU) data

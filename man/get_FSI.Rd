@@ -7,18 +7,13 @@
 get_FSI(freq = "monthly")
 }
 \arguments{
-\item{freq}{either "monthly" or "quarterly"}
+\item{freq}{either "monthly" or "quarterly".}
 }
 \value{
-return an xts data object
+an xts data object.
 }
 \description{
 Get Financial Stress Indicator (FSI) data
-}
-\details{
-The FSI runs from 1889 to 2016 and is available at monthly and quarterly frequencies.
-Index is constructed from the titles of articles published in five U.S.
-newspapers: the Boston Globe, Chicago Tribune, Los Angeles Times, Wall Street Journal and Washington Post.
 }
 \examples{
 \dontrun{

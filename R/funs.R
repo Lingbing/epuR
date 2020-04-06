@@ -4,16 +4,9 @@ utils::globalVariables(c("Date", "Month", "TPU", "Year", "month", "quarter", "ye
 #'
 #' @description
 #' EPU index from the official website while processing the dates and output formats.
-#' @details
-#' For convenience, the function gets the full data consisting of all
-#' regions in real time, so it may take a while, typically 20 seconds or so.
-#' If region name is provided, then the regional EPU data is retrieved from the
-#' full data xts object. It is suggested to get the full data by default and then
-#' collects regional data using xts.
-#'
-#' @param region a character indicating the region of the EPU you want. The default
+#' @param region a character indicating the region of the EPU. The default
 #' is "all" regions. The region names has to be one of the options in the EPU country list
-#' @return return an xts data object containing the EPU for the chosen region
+#' @return an xts data object containing the EPU for the chosen region.
 #' @seealso \code{\link{xts}}
 #' @importFrom xts xts
 #' @importFrom openxlsx read.xlsx
@@ -54,9 +47,8 @@ get_EPU <- function (region = "all") {
 
 #' Get Trade Policy Uncertainty (TPU) data
 #'
-#' @param region a character indicating the region of the TPU you want. The default
-#' is "China". Can also be "Japan" and "US".
-#' @return return an xts data object containing the TPU for the chosen region
+#' @param region a character indicating the region of the TPU, default is "China", can be "Japan" or "US".
+#' @return an xts data object containing the TPU for the chosen region
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/trade_uncertainty.html}
@@ -95,8 +87,8 @@ get_TPU <- function (region = "China") {
 
 #' Get US Equity Market Volatility Index (EMV) data
 #'
-#' @param all logical. if TRUE return all EMV categories.
-#' @return return an xts data object
+#' @param all logical, if TRUE return all EMV categories.
+#' @return an xts data object
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/EMV_monthly.html}
@@ -117,18 +109,10 @@ get_EMV <- function (all = T) {
   return(data_xts)
 }
 
-
-
-
-
-
 #' Get Financial Stress Indicator (FSI) data
 #'
-#' @details The FSI runs from 1889 to 2016 and is available at monthly and quarterly frequencies.
-#' Index is constructed from the titles of articles published in five U.S.
-#' newspapers: the Boston Globe, Chicago Tribune, Los Angeles Times, Wall Street Journal and Washington Post.
-#' @param freq either "monthly" or "quarterly"
-#' @return return an xts data object
+#' @param freq either "monthly" or "quarterly".
+#' @return an xts data object.
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/financial_stress.html}
@@ -145,7 +129,6 @@ get_FSI <- function(freq = "monthly") {
     data <- openxlsx::read.xlsx(url, skipEmptyRows = TRUE, sheet = 2, detectDates = TRUE)
     data_date <- zoo::as.yearmon(paste(data$year, data$month, sep = "-"), format = "%Y-%m")
     data <- subset(data, select = -c(year, month, date))
-
   } else if (freq == "quarterly") {
     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 1, detectDates = TRUE)
     data_date <- zoo::as.yearqtr(data$date)
@@ -154,14 +137,10 @@ get_FSI <- function(freq = "monthly") {
     data_xts <- xts::xts(data, order.by = data_date)
 }
 
-
-
 #' Get World Uncertainty Index (WUI) data
 #'
-#' @details The dataset includes the World Uncertainty Index (WUI) at the global level,
-#' as well as by income, region, and country levels.
-#' @param type sheet option from the official dataset
-#' @return return an xts data object
+#' @param type sheet option from the official excel file.
+#' @return an xts data object
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://worlduncertaintyindex.com/data/}
@@ -222,11 +201,8 @@ get_WUI <- function(type = "F1") {
 
 #' Get Immigration Related Index (IRI) data
 #'
-#' @details the intensity of migration-related fears in France, Germany,
-#' the United Kingdom and the United States.
-#' @param region choose from UK, USA, Germany, France for Migrant related EPU and
-#' IRI for the specified region. Default returns all regions data.
-#' @return return an xts data object
+#' @param region choose from UK, USA, Germany, France for Migrant related EPU and IRI for the specified region. Default returns all regions data.
+#' @return an xts data object
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/immigration_fear.html}
@@ -256,13 +232,8 @@ get_IRI <- function(region="all") {
 
 #' Get Geopolitical Risk Index (GPR) data
 #'
-#' @details Monthly index of Geopolitical Risk (GPR Index) counting the occurrence of words related to
-#' geopolitical tensions in leading international newspapers.
-#' The GPR index spikes around the Gulf War, after 9/11, during the 2003 Iraq invasion,
-#' during the 2014 Russia-Ukraine crisis, and after the Paris terrorist attacks.
-#' @param type a numeric indicating the type. 1 for quarterly GRI, 2 for GPRH, 3 for GPR
-#' of countries, and 4 for GPR words.
-#' @return return an xts data object
+#' @param type a numeric indicating the type. 1 for quarterly GRI, 2 for GPRH, 3 for GPR of countries, and 4 for GPR words.
+#' @return an xts data object
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.matteoiacoviello.com/gpr.htm}
@@ -299,45 +270,3 @@ get_GPR <- function(type = 1) {
     data_xts <- xts::xts(data, order.by = data_date)
   }
 }
-
-
-
-# get_TPU2 <- function(freq = "monthly") {
-#   # the original data set contains other information such as exchange rate uncertainty
-#   # and tarrifvol, etc. We only pick the TPU column
-#   if (freq == "monthly") {
-#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 3, detectDates = TRUE)
-#     data_date <- as.yearmon(data$DATE, format = "%Y-%m")
-#     data <- data %>%
-#       select(TPU)
-#     data_xts <- xts(data, order.by = data_date)
-#   } else if (freq == "daily") {
-#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 4)
-#     data_date <- ymd(data$DAY)
-#     data <- data %>%
-#       select(TPUD)
-#     data_xts <- xts(data, order.by = data_date)
-#   } else if (freq == "quaterly") {
-#     data <- read.xlsx(url, skipEmptyRows = TRUE, sheet = 5)
-#     data_date <- as.yearqtr(data$DATEQ)
-#     data <- data %>%
-#       select(TPUQ)
-#     data_xts <- xts(data, order.by = data_date)
-#   }
-#   return(data_xts)
-# }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

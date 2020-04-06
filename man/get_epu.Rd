@@ -7,24 +7,14 @@
 get_EPU(region = "all")
 }
 \arguments{
-\item{region}{a character indicating the region of the EPU you want. The default
+\item{region}{a character indicating the region of the EPU. The default
 is "all" regions. The region names has to be one of the options in the EPU country list}
 }
 \value{
-return an xts data object containing the EPU for the chosen region
+an xts data object containing the EPU for the chosen region.
 }
 \description{
-`get_EPU()` gets EPU index from the official website while processing the
-dates and output formats.
-
-Learn more in `vignette("epuR")`
-}
-\details{
-For convenience, the `get_epu()` function get the full data consisting of all
-regions in real time, so it may take a while, typically 20 seconds or so.
-If region name is provided, then the regional EPU data is retrieved from the
-full data xts object. It is suggested to get the full data by default and then
-collects regional data using xts.
+EPU index from the official website while processing the dates and output formats.
 }
 \examples{
 \dontrun{

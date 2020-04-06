@@ -2,18 +2,18 @@
 % Please edit documentation in R/funs.R
 \name{get_EMV}
 \alias{get_EMV}
-\title{Get US Equity Market Volatility Index (TPU) data}
+\title{Get US Equity Market Volatility Index (EMV) data}
 \usage{
 get_EMV(all = T)
 }
 \arguments{
-\item{all}{logical. if TRUE return all EMV categories.}
+\item{all}{logical, if TRUE return all EMV categories.}
 }
 \value{
-return an xts data object
+an xts data object
 }
 \description{
-Get US Equity Market Volatility Index (TPU) data
+Get US Equity Market Volatility Index (EMV) data
 }
 \examples{
 \dontrun{

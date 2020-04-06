@@ -7,18 +7,13 @@
 get_IRI(region = "all")
 }
 \arguments{
-\item{region}{choose from UK, USA, Germany, France for Migrant related EPU and
-IRI for the specified region. Default is `all` that returns all regions data.}
+\item{region}{choose from UK, USA, Germany, France for Migrant related EPU and IRI for the specified region. Default returns all regions data.}
 }
 \value{
-return an xts data object
+an xts data object
 }
 \description{
 Get Immigration Related Index (IRI) data
-}
-\details{
-the intensity of migration-related fears in France, Germany,
-the United Kingdom and the United States.
 }
 \examples{
 \dontrun{

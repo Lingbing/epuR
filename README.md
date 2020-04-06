@@ -13,10 +13,3 @@ The following indices are supported:
 5. Financial Stress Indicator (FSI) using `get_FSI()`.
 6. GeoPolitical Risk Index (GPR) using `get_GPR()`.
 7. Immigration Related Index (IRI) using `get_IRI()`.
-
-
-Monetary Policy Uncertainty (MPU) from https://sites.google.com/site/lucasfhusted/data
-
-World Uncertainty Index (WUI) from https://worlduncertaintyindex.com/data/
-
-ERUQ (Economic Uncertainty Relation Queries) data are hosted on Dropbox

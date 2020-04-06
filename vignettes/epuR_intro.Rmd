@@ -8,7 +8,9 @@ output:
     theme: cayman
     highlight: github
 vignette: |
-  %\VignetteIndexEntry{epuR: Economic Policy Uncertainty data made easy in R} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{epuR: Economic Policy Uncertainty data made easy in R} 
+  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteEncoding{UTF-8}
 ---
 
 # Economic Policy Uncertainty data
