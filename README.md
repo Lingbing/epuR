@@ -1,15 +1,76 @@
-# epuR: Economic Policy Uncertainty Data Analysis Made Easy in R
 
-This package provides tools to retrieve Economic Policy Uncertainty (EPU) data from the EPU official website (https://www.policyuncertainty.com/index.html). The website is hosting a collection of EPU related indices, including EPU indices in dozens of countries, categorical EPU, and some other indices like Trade Policy Index, Financial Stress Indicator, Geopolitical Risk index, etc. Hand collecting from the website can be cumbersome, and putting them into the right format for further analysis can be frustrating. 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-`epuR` provides functions to collect indicidual index in real time from the EPU and related websites while processing the dates and formats. The output is an `xts` data object which makes further manipulation, plotting, and analysis easier.
+# epuR
 
-The following indices are supported:
+<!-- badges: start -->
 
-1. Economic Policy Uncertainty (EPU) using `get_EPU()`.
-2. Trade Policy Uncertainty (TPU) using `get_TPU()`.
-3. US Equity Market Volatility (EMV) using `get_EMV()`.
-4. World Uncertainty Index (WUI) using `get_WUI()`.
-5. Financial Stress Indicator (FSI) using `get_FSI()`.
-6. GeoPolitical Risk Index (GPR) using `get_GPR()`.
-7. Immigration Related Index (IRI) using `get_IRI()`.
+[![Travis build
+status](https://travis-ci.org/Lingbing/epuR.svg?branch=master)](https://travis-ci.org/Lingbing/epuR)
+<!-- badges: end -->
+
+The goal of epuR is to provide a simple and consistent framework to
+collect Economic Policy Uncertainty and related index data from their
+official web locations in real time.
+
+## Installation
+
+You can install the released version of `epuR` from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("epuR")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Lingbing/epuR")
+```
+
+## Example
+
+`epuR` functions adopts an **get\_XXX()** style to get the data, in
+which ‘XXX’ refers to the index name. For example, to get EPU index, use
+function `get_EPU()`:
+
+``` r
+library(epuR)
+## get EPU data
+epu_data <- get_EPU()
+class(epu_data)
+#> [1] "xts" "zoo"
+```
+
+Every `get` function returns an `xts` time series object so further data
+manipulation and visualization is straightforward. To plot all regions
+in the EPU data:
+
+``` r
+plot(epu_data)
+```
+
+<img src="man/figures/README-cars-1.png" width="100%" />
+
+To plot some specific region:
+
+``` r
+plot(epu_data$Australia)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+Currently, the following indexes are supported:
+
+## Supported Index
+
+| Function  |         Index Data          | Default arguments |
+| :-------: | :-------------------------: | ----------------- |
+| `get_EPU` | Economic Policy Uncertainty | region = “all”    |
+| `get_EMV` |  Equity Market Volatility   | all = T           |
+| `get_FSI` | Financial Stress Indicator  | freq = “monthly”  |
+| `get_GPR` |   Geopolitical Risk Index   | type = 1          |
+| `get_IRI` |  Immigration Related Index  | region = “all”    |
+| `get_TPU` |  Trade Policy Uncertainty   | region = “China”  |
+| `get_WUI` |   World Uncertainty Index   | type = “F1”       |
