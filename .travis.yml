@@ -2,3 +2,6 @@
 
 language: R
 cache: packages
+
+repos:
+  CRAN: https://cloud.r-project.org
