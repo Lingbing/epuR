@@ -13,7 +13,8 @@ status](https://travis-ci.org/Lingbing/epuR.svg?branch=master)](https://travis-c
 
 The goal of `epuR` is to provide a simple and consistent framework to
 collect Economic Policy Uncertainty and related index data from their
-official web locations in real time.
+official web locations in real time. The official website of EPU is
+<https://www.policyuncertainty.com/china_monthly.html>.
 
 ## Installation
 
@@ -33,9 +34,9 @@ devtools::install_github("Lingbing/epuR")
 
 ## Example
 
-`epuR` functions adopts an **get\_XXX()** style to get the data, in
-which ‘XXX’ refers to the index name. For example, to get EPU index, use
-function `get_EPU()`:
+`epuR` functions adopts a **get\_XXX()** style to collect the index
+data, where ‘XXX’ refers to the index name. For example, to get the
+Economic Policy Uncertainty (EPU) index, use function `get_EPU()`:
 
 ``` r
 library(epuR)
@@ -45,9 +46,9 @@ class(epu_data)
 #> [1] "xts" "zoo"
 ```
 
-Every `get` function returns an `xts` time series object so further data
-manipulation and visualization is straightforward. To plot all regions
-in the EPU data:
+Every `get` function returns an `xts` time series object so that further
+data manipulation and visualization is very straightforward if you are
+familiar with operations on `xts`. To plot all regions in the EPU data:
 
 ``` r
 plot(epu_data)
@@ -63,6 +64,17 @@ plot(epu_data$Australia)
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
+## Using `dygraphs`
+
+`dygraphs` can be directly use to make the time series plot interactive:
+
+``` r
+library(dygraphs)
+dygraph(epu_data$China)
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
 Currently, the following indexes are supported:
 
 ## Supported Index
@@ -76,3 +88,12 @@ Currently, the following indexes are supported:
 | `get_IRI` |  Immigration Related Index  | region = “all”    |
 | `get_TPU` |  Trade Policy Uncertainty   | region = “China”  |
 | `get_WUI` |   World Uncertainty Index   | type = “F1”       |
+
+For example, to get the FSI data:
+
+``` r
+fsi_data <- get_FSI()
+dygraph(fsi_data)
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
