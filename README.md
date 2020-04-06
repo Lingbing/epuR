@@ -3,13 +3,15 @@
 
 # epuR
 
+<img src="https://github.com/Lingbing/epuR/blob/master/logo.png?raw=true" height="200" align="right" />
+
 <!-- badges: start -->
 
 [![Travis build
 status](https://travis-ci.org/Lingbing/epuR.svg?branch=master)](https://travis-ci.org/Lingbing/epuR)
 <!-- badges: end -->
 
-The goal of epuR is to provide a simple and consistent framework to
+The goal of `epuR` is to provide a simple and consistent framework to
 collect Economic Policy Uncertainty and related index data from their
 official web locations in real time.
 
