@@ -243,9 +243,6 @@ get_IRI <- function(region="all") {
 #' }
 get_GPR <- function(type = 1) {
   url = "https://www.matteoiacoviello.com/gpr_files/gpr_web_latest.xlsx"
-  # temp = tempfile(fileext = ".xlsx")
-  # download.file(url, destfile=temp, mode='wb')
-  # data <- readxl::read_xlsx(temp, sheet =1, col_types = c("date", rep("numeric", 12)))
   if (type == 1) {
     data <- openxlsx::read.xlsx(url, sheet = 1, detectDates = T, rows = 1:424)
     data_date <- zoo::as.yearmon(as.Date(data$Date,origin = "1899-12-30"), format = "%y%b")
@@ -269,4 +266,46 @@ get_GPR <- function(type = 1) {
     data <- subset(data, select = -Date)
     data_xts <- xts::xts(data, order.by = data_date)
   }
+}
+
+
+
+#' Get Oxford-Man Institute (OMI) data
+#'
+#' @description
+#' Realized volatility data from the Oxford-Man Institute of Quantitative Finance website
+#' @param index, a character string of the index name needed.
+#' @return an xts data object
+#' @seealso \code{\link{xts}}
+#' @importFrom data.table fread
+#' @importFrom lubridate ymd
+#' @importFrom xts xts
+#' @importFrom stringr str_sub
+#' @export
+#' @references \url{https://www.policyuncertainty.com/}
+#' @examples \dontrun{
+#' ## it take time to download data from OMI.
+#' ## Its size is about 15Mb in zip
+#' aex_data <- get_OMI("AEX")
+#' str(aex_data)
+#' }
+get_OMI <- function(index = "AEX") {
+  url <- "https://realized.oxford-man.ox.ac.uk/images/oxfordmanrealizedvolatilityindices.zip"
+  temp = tempfile()
+  download.file(url, temp)
+  data <- data.table::fread(unzip(temp, file = "oxfordmanrealizedvolatilityindices.csv"))
+  unlink(temp)
+  data_date <- lubridate::ymd(substr(data$V1, 1, 10))
+  data <- subset(data, select = -V1)
+  data$date <- data_date
+  index.list <- stringr::str_sub(unique(data$Symbol), 2)
+  if (!(index %in% index.list)) {
+    cat("Index has to be in the list \n", index.list, "\n")
+    stop("Try a new index name")
+  } else {
+    index_data <- subset(data, Symbol == paste0(".", index))[, -1]
+    index_date <- subset(data, Symbol == paste0(".", index), select = date)
+    data_xts <- xts::xts(index_data, order.by = index_date$date)
+  }
+  return(data_xts)
 }

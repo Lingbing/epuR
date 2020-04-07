@@ -91,6 +91,7 @@ Currently, the following indexes are supported:
 | `get_IRI` |  Immigration Related Index  | region = “all”    |
 | `get_TPU` |  Trade Policy Uncertainty   | region = “China”  |
 | `get_WUI` |   World Uncertainty Index   | type = “F1”       |
+| `get_OMI` |   Oxford-Man Institute RV   | index = “AEX”     |
 
 For example, to get the FSI data:
 
