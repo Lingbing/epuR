@@ -16,14 +16,12 @@ an xts data object containing the TPU for the chosen region
 Get Trade Policy Uncertainty (TPU) data
 }
 \examples{
-\dontrun{
 china_tpu <- get_TPU()
 plot(china_tpu)
 # get Japan TPU
 jap_tpu <- get_TPU("Japan")
 library(dygraphs)
 dygraph(jap_tpu)
-}
 }
 \references{
 \url{https://www.policyuncertainty.com/trade_uncertainty.html}

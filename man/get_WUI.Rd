@@ -16,10 +16,8 @@ an xts data object
 Get World Uncertainty Index (WUI) data
 }
 \examples{
-\dontrun{
 wui_ave <- get_WUI("F1")
 plot(wui_ave)
-}
 }
 \references{
 \url{https://worlduncertaintyindex.com/data/}

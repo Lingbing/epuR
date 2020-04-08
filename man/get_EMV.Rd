@@ -16,10 +16,8 @@ an xts data object
 Get US Equity Market Volatility Index (EMV) data
 }
 \examples{
-\dontrun{
 emv_data <- get_EMV(all = FALSE)
 plot(emv_data)
-}
 }
 \references{
 \url{https://www.policyuncertainty.com/EMV_monthly.html}

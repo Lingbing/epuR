@@ -17,7 +17,6 @@ an xts data object containing the EPU for the chosen region.
 EPU index from the official website while processing the dates and output formats.
 }
 \examples{
-\dontrun{
 data <- get_EPU()
 # it is an xts object so it can be plotted directly
 plot(data)
@@ -27,7 +26,6 @@ dygraph(data)
 # get country-wise data using specific region name
 china_epu <- get_EPU("China")
 dygraph(china_epu)
-}
 }
 \references{
 \url{https://www.policyuncertainty.com/}

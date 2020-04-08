@@ -1,4 +1,4 @@
-utils::globalVariables(c("Date", "Month", "TPU", "Year", "month", "quarter", "year"))
+utils::globalVariables(c("Date", "Month", "TPU", "Year", "month", "quarter", "year", "V1", "Symbol"))
 
 #' Get Economic Policy Uncertainty (EPU) data
 #'
@@ -14,7 +14,7 @@ utils::globalVariables(c("Date", "Month", "TPU", "Year", "month", "quarter", "ye
 #' @importFrom stats na.omit
 #' @export
 #' @references \url{https://www.policyuncertainty.com/}
-#' @examples \dontrun{
+#' @examples
 #' data <- get_EPU()
 #' # it is an xts object so it can be plotted directly
 #' plot(data)
@@ -24,12 +24,10 @@ utils::globalVariables(c("Date", "Month", "TPU", "Year", "month", "quarter", "ye
 #' # get country-wise data using specific region name
 #' china_epu <- get_EPU("China")
 #' dygraph(china_epu)
-#' }
 get_EPU <- function (region = "all") {
   url <- "https://www.policyuncertainty.com/media/All_Country_Data.xlsx"
   data <- openxlsx::read.xlsx(url, rows = 1:423)
   data_date <- zoo::as.yearmon(paste(data$Year, data$Month, sep = "-"), format = "%Y-%m")
-
   data <- subset(data, select = -c(Year, Month))
   data_xts <- xts::xts(data, order.by = data_date)
   ind <- colnames(data)
@@ -37,7 +35,7 @@ get_EPU <- function (region = "all") {
     region_data <- data_xts
   }
   else if (!(region %in% ind)) {
-    cat("Region name not in the data, try one of ", "\n", ind, "\n")
+    warning("Region name not in the data", "\n")
   }
   else {
     region_data <- na.omit(data_xts[, region])
@@ -52,14 +50,13 @@ get_EPU <- function (region = "all") {
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/trade_uncertainty.html}
-#' @examples \dontrun{
+#' @examples
 #' china_tpu <- get_TPU()
 #' plot(china_tpu)
 #' # get Japan TPU
 #' jap_tpu <- get_TPU("Japan")
 #' library(dygraphs)
 #' dygraph(jap_tpu)
-#' }
 get_TPU <- function (region = "China") {
   if (region == "China") {
     url = "https://www.policyuncertainty.com/media/China_Mainland_Paper_EPU.xlsx"
@@ -92,10 +89,9 @@ get_TPU <- function (region = "China") {
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/EMV_monthly.html}
-#' @examples \dontrun{
+#' @examples
 #' emv_data <- get_EMV(all = FALSE)
 #' plot(emv_data)
-#' }
 get_EMV <- function (all = T) {
   url = "https://www.policyuncertainty.com/media/EMV_Data.xlsx"
   data <- openxlsx::read.xlsx(url, rows = 1:423)
@@ -116,13 +112,12 @@ get_EMV <- function (all = T) {
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/financial_stress.html}
-#' @examples \dontrun{
+#' @examples
 #' # for monthly FSI
 #' fsi_mon <- get_FSI()
 #' plot(fsi_mon)
 #' fsi_quar <- get_FSI("quarterly")
 #' plot(fsi_quar)
-#' }
 get_FSI <- function(freq = "monthly") {
   url = "https://www.policyuncertainty.com/media/Financial_Stress.xlsx"
   if (freq == "monthly") {
@@ -144,10 +139,9 @@ get_FSI <- function(freq = "monthly") {
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://worlduncertaintyindex.com/data/}
-#' @examples \dontrun{
+#' @examples
 #' wui_ave <- get_WUI("F1")
 #' plot(wui_ave)
-#' }
 get_WUI <- function(type = "F1") {
   url = "https://worlduncertaintyindex.com/wp-content/uploads/2020/02/WUI_Data.xlsx"
   if (type == "F1") {
@@ -206,10 +200,9 @@ get_WUI <- function(type = "F1") {
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/immigration_fear.html}
-#' @examples \dontrun{
+#' @examples
 #' usa_iri <- get_IRI("USA")
 #' plot(usa_iri)
-#' }
 get_IRI <- function(region="all") {
   url = "https://www.policyuncertainty.com/media/Migration_Fear_EPU_Data.xlsx"
   data <- openxlsx::read.xlsx(url)
@@ -237,14 +230,13 @@ get_IRI <- function(region="all") {
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.matteoiacoviello.com/gpr.htm}
-#' @examples \dontrun{
+#' @examples
 #' gpr <- get_GPR(1)
 #' plot(gpr$GPR)
-#' }
 get_GPR <- function(type = 1) {
   url = "https://www.matteoiacoviello.com/gpr_files/gpr_web_latest.xlsx"
   if (type == 1) {
-    data <- openxlsx::read.xlsx(url, sheet = 1, detectDates = T, rows = 1:424)
+    data <- openxlsx::read.xlsx(url, sheet = 1, detectDates = TRUE, rows = 1:424)
     data_date <- zoo::as.yearmon(as.Date(data$Date,origin = "1899-12-30"), format = "%y%b")
     data <- subset(data, select = -Date)
     data_xts <- xts::xts(data, order.by = data_date)
@@ -256,12 +248,12 @@ get_GPR <- function(type = 1) {
     data <- subset(data, select = -c(Year, Month))
     data_xts <- xts::xts(data, order.by = data_date)
   } else if (type == 3) {
-    data <- read.xlsx(url, sheet = 3, detectDates = T)
+    data <- read.xlsx(url, sheet = 3, detectDates = TRUE)
     data_date <- zoo::as.yearmon(as.Date(data$Date,origin = "1899-12-30"), format = "%y%b")
     data <- subset(data, select = -Date)
     data_xts <- xts::xts(data, order.by = data_date)
   } else if (type == 4) {
-    data <- openxlsx::read.xlsx(url, sheet = 4, detectDates = T)
+    data <- openxlsx::read.xlsx(url, sheet = 4, detectDates = TRUE)
     data_date <- zoo::as.yearmon(as.Date(data$Date,origin = "1899-12-30"), format = "%y%b")
     data <- subset(data, select = -Date)
     data_xts <- xts::xts(data, order.by = data_date)
@@ -270,42 +262,3 @@ get_GPR <- function(type = 1) {
 
 
 
-#' Get Oxford-Man Institute (OMI) data
-#'
-#' @description
-#' Realized volatility data from the Oxford-Man Institute of Quantitative Finance website
-#' @param index, a character string of the index name needed.
-#' @return an xts data object
-#' @seealso \code{\link{xts}}
-#' @importFrom data.table fread
-#' @importFrom lubridate ymd
-#' @importFrom xts xts
-#' @importFrom stringr str_sub
-#' @export
-#' @references \url{https://www.policyuncertainty.com/}
-#' @examples \dontrun{
-#' ## it take time to download data from OMI.
-#' ## Its size is about 15Mb in zip
-#' aex_data <- get_OMI("AEX")
-#' str(aex_data)
-#' }
-get_OMI <- function(index = "AEX") {
-  url <- "https://realized.oxford-man.ox.ac.uk/images/oxfordmanrealizedvolatilityindices.zip"
-  temp = tempfile()
-  download.file(url, temp)
-  data <- data.table::fread(unzip(temp, file = "oxfordmanrealizedvolatilityindices.csv"))
-  unlink(temp)
-  data_date <- lubridate::ymd(substr(data$V1, 1, 10))
-  data <- subset(data, select = -V1)
-  data$date <- data_date
-  index.list <- stringr::str_sub(unique(data$Symbol), 2)
-  if (!(index %in% index.list)) {
-    cat("Index has to be in the list \n", index.list, "\n")
-    stop("Try a new index name")
-  } else {
-    index_data <- subset(data, Symbol == paste0(".", index))[, -1]
-    index_date <- subset(data, Symbol == paste0(".", index), select = date)
-    data_xts <- xts::xts(index_data, order.by = index_date$date)
-  }
-  return(data_xts)
-}

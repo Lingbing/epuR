@@ -16,10 +16,8 @@ an xts data object
 Get Immigration Related Index (IRI) data
 }
 \examples{
-\dontrun{
 usa_iri <- get_IRI("USA")
 plot(usa_iri)
-}
 }
 \references{
 \url{https://www.policyuncertainty.com/immigration_fear.html}

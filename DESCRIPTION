@@ -4,8 +4,9 @@ Title: Retrieve the Economic Uncertainty Index Data
 Version: 0.1.0
 Author: Lingbing Feng
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
-Description: Tools to retrieve the Economic Policy Uncertainty and related index data from the official 
- website in real time.
+Description: Retrieves the Economic Policy Uncertainty and related index data from the official 
+ website <https://www.policyuncertainty.com/index.html> in real time. Provides a consistent framework
+ to collect the data and deals with the date format problem.
 License: GPL
 URL: https://github.com/Lingbing/epuR
 BugReports: https://github.com/Lingbing/epuR/issues

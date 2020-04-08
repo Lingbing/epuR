@@ -16,13 +16,11 @@ an xts data object.
 Get Financial Stress Indicator (FSI) data
 }
 \examples{
-\dontrun{
 # for monthly FSI
 fsi_mon <- get_FSI()
 plot(fsi_mon)
 fsi_quar <- get_FSI("quarterly")
 plot(fsi_quar)
-}
 }
 \references{
 \url{https://www.policyuncertainty.com/financial_stress.html}

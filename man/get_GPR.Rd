@@ -16,10 +16,8 @@ an xts data object
 Get Geopolitical Risk Index (GPR) data
 }
 \examples{
-\dontrun{
 gpr <- get_GPR(1)
 plot(gpr$GPR)
-}
 }
 \references{
 \url{https://www.matteoiacoviello.com/gpr.htm}
