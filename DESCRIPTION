@@ -1,7 +1,7 @@
 Package: epuR
 Type: Package
 Title: Retrieve the Economic Uncertainty Index Data
-Version: 0.1.0
+Version: 0.1.1
 Author: Lingbing Feng
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
 Description: Retrieves the Economic Policy Uncertainty and related index data from the official 

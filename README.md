@@ -3,7 +3,7 @@
 
 # epuR
 
-<img src="https://github.com/Lingbing/epuR/blob/master/logo.png?raw=true" height="200" align="right" />
+<img src="inst/figures/epuR_logo.png" height="200" align="right" />
 
 <!-- badges: start -->
 
