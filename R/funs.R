@@ -89,9 +89,11 @@ get_TPU <- function (region = "China") {
 #' @seealso \code{\link{xts}}
 #' @export
 #' @references \url{https://www.policyuncertainty.com/EMV_monthly.html}
-#' @examples
+#' @examples \dontrun{
+#' ## it take about 15 seconds to run this example
 #' emv_data <- get_EMV(all = FALSE)
 #' plot(emv_data)
+#' }
 get_EMV <- function (all = T) {
   url = "https://www.policyuncertainty.com/media/EMV_Data.xlsx"
   data <- openxlsx::read.xlsx(url, rows = 1:423)
@@ -271,10 +273,11 @@ get_GPR <- function(type = 1) {
 #' @importFrom lubridate ymd
 #' @importFrom xts xts
 #' @importFrom stringr str_sub
+#' @importFrom utils download.file unzip
 #' @export
 #' @references \url{https://realized.oxford-man.ox.ac.uk/}
 #' @examples \dontrun{
-#' ## it take time to download data from OMI.
+#' ## it take about 30-60 seconds to run this example
 #' ## Its size is about 15Mb in zip
 #' aex_data <- get_OMI("AEX")
 #' str(aex_data)
@@ -283,7 +286,7 @@ get_OMI <- function(index = "AEX") {
   url <- "https://realized.oxford-man.ox.ac.uk/images/oxfordmanrealizedvolatilityindices.zip"
   temp = tempfile()
   download.file(url, temp)
-  data <- data.table::fread(unzip(temp, file = "oxfordmanrealizedvolatilityindices.csv"))
+  data <- data.table::fread(unzip(temp, files = "oxfordmanrealizedvolatilityindices.csv"))
   unlink(temp)
   data_date <- lubridate::ymd(substr(data$V1, 1, 10))
   data <- subset(data, select = -V1)
@@ -299,5 +302,3 @@ get_OMI <- function(index = "AEX") {
   }
   return(data_xts)
 }
-
-

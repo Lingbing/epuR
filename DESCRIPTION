@@ -1,21 +1,18 @@
 Package: epuR
 Type: Package
 Title: Collect and Process Economic Policy Uncertainty Data
-Version: 0.1.1
+Version: 0.1
 Author: Lingbing Feng
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
-Description: Provides functions to collect the economic policy uncertainty
-  (EPU) and related index data from the official  website
-  <https://www.policyuncertainty.com/index.html> in real time.
-  Deals with date format issuse and returns an xts object to
-  facilitate further time series data manipulation and
-  analysis.
-License: GPL
+Description: Provides functions to collect the economic policy uncertainty and related index data from the official 
+ website <https://www.policyuncertainty.com/index.html> in real time. Deals with date format and returns an time series object to
+ facilitate further data manipulation and analysis.
+License: GPL-3
 URL: https://github.com/Lingbing/epuR
 BugReports: https://github.com/Lingbing/epuR/issues
 Encoding: UTF-8
 LazyData: true
-Imports: openxlsx, xts, zoo, stats, stringr, lubridate, data.table
+Imports: openxlsx, xts, zoo, stats, stringr, lubridate, data.table, utils
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 Suggests: knitr, rmarkdown, dygraphs

@@ -17,7 +17,7 @@ Realized volatility data from the Oxford-Man Institute of Quantitative Finance w
 }
 \examples{
 \dontrun{
-## it take time to download data from OMI.
+## it take about 30-60 seconds to run this example
 ## Its size is about 15Mb in zip
 aex_data <- get_OMI("AEX")
 str(aex_data)
