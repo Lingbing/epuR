@@ -299,3 +299,5 @@ get_OMI <- function(index = "AEX") {
   }
   return(data_xts)
 }
+
+

@@ -1,12 +1,15 @@
 Package: epuR
 Type: Package
-Title: Retrieve the Economic Uncertainty Index Data
+Title: Collect and Process Economic Policy Uncertainty Data
 Version: 0.1.1
 Author: Lingbing Feng
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
-Description: Retrieves the Economic Policy Uncertainty and related index data from the official 
- website <https://www.policyuncertainty.com/index.html> in real time. Provides a consistent framework
- to collect the data and deals with the date format problem.
+Description: Provides functions to collect the economic policy uncertainty
+  (EPU) and related index data from the official  website
+  <https://www.policyuncertainty.com/index.html> in real time.
+  Deals with date format issuse and returns an xts object to
+  facilitate further time series data manipulation and
+  analysis.
 License: GPL
 URL: https://github.com/Lingbing/epuR
 BugReports: https://github.com/Lingbing/epuR/issues
