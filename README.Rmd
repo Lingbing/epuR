@@ -24,6 +24,10 @@ knitr::opts_chunk$set(
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/epuR?color=green)](https://cran.r-project.org/package=epuR)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/epuR?color=green)](https://cran.r-project.org/package=epuR)
 [![](http://cranlogs.r-pkg.org/badges/epuR?color=green)](https://cran.r-project.org/package=epuR)
+
+![Total visitor](https://visitor-count-badge.herokuapp.com/total.svg?repo_id=lingbing/epuR)
+![Visitors in today](https://visitor-count-badge.herokuapp.com/today.svg?repo_id=lingbing/epuR)
+[![HitCount](http://hits.dwyl.com/lingbing/epuR.svg)](http://hits.dwyl.com/lingbing/epuR)
 <!-- badges: end -->
 
 The goal of `epuR` is to provide a simple and consistent framework to collect Economic Policy Uncertainty and related index data from their official web locations in real time. The official website of EPU is https://www.policyuncertainty.com/china_monthly.html.
