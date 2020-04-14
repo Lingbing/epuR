@@ -22,8 +22,20 @@ today](https://visitor-count-badge.herokuapp.com/today.svg?repo_id=lingbing/epuR
 
 The goal of `epuR` is to provide a simple and consistent framework to
 collect Economic Policy Uncertainty and related index data from their
-official web locations in real time. The official website of EPU is
-<https://www.policyuncertainty.com/china_monthly.html>.
+official web locations in real time.
+
+The official websites are listed here:
+
+Economic Policy
+Uncertainty：<https://www.policyuncertainty.com/china_monthly.html>.
+
+Trade Policy Uncertainty:
+<https://www.matteoiacoviello.com/tpu.htm#data>
+
+Oxford-Man Institute Realized Volatility:
+<https://realized.oxford-man.ox.ac.uk/>
+
+Geopolitical Risk Index: <https://www.matteoiacoviello.com/gpr.htm>
 
 ## Installation
 
@@ -75,7 +87,8 @@ plot(epu_data$Australia)
 
 ## Using `dygraphs`
 
-`dygraphs` can be directly use to make the time series plot interactive:
+`dygraphs` can be directly employed to make the time series plot
+interactive:
 
 ``` r
 library(dygraphs)
