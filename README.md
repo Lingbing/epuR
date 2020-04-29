@@ -12,11 +12,6 @@ status](https://travis-ci.org/Lingbing/epuR.svg?branch=master)](https://travis-c
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/epuR?color=green)](https://cran.r-project.org/package=epuR)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/epuR?color=green)](https://cran.r-project.org/package=epuR)
 [![](http://cranlogs.r-pkg.org/badges/epuR?color=green)](https://cran.r-project.org/package=epuR)
-
-![Total
-visitor](https://visitor-count-badge.herokuapp.com/total.svg?repo_id=lingbing/epuR)
-![Visitors in
-today](https://visitor-count-badge.herokuapp.com/today.svg?repo_id=lingbing/epuR)
 [![HitCount](http://hits.dwyl.com/lingbing/epuR.svg)](http://hits.dwyl.com/lingbing/epuR)
 <!-- badges: end -->
 

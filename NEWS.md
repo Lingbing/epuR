@@ -3,5 +3,8 @@
 - initial release
 - added `get_OMI` function to download the Oxford-Man Institute of Quantitative Finance Realize Volatility data
 
+# epuR 0.2
 
+- rebuilt in R-4.0.0
+- update package vignettes
 

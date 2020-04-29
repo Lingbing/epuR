@@ -1,7 +1,7 @@
 Package: epuR
 Type: Package
 Title: Collect and Process Economic Policy Uncertainty Data
-Version: 0.1
+Version: 0.2
 Author: Lingbing Feng
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
 Description: Provides functions to collect the economic policy uncertainty and related index data from the official 
